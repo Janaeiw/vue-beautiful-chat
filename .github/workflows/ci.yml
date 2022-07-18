@@ -2,7 +2,7 @@ name: A TO A:GH_PAGES
 on: # 监听 master 分支上的 push 事件
   push:
     branches:
-      - master
+      - main
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # 构建环境使用 ubuntu
@@ -17,7 +17,7 @@ jobs:
         # 你要操作的目标仓库，注意：是项目仓库名
         TARGET_REPO: Janaeiw/vue-beautiful-chat
         # 构建结果存储的分支
-        TARGET_BRANCH: main
+        TARGET_BRANCH: dist
         # 要使用的构建命令
         BUILD_SCRIPT: npm install && npm run build # 下载依赖 打包项目
         # 构建结果存储目录，dist里面会有index.html，如果没有这个文件，显示不了，可在本地构建后去校验
