@@ -15,9 +15,9 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.VUEAD }} # VUEAD 是我的 secret 名称，需要替换成你的
         # 你要操作的目标仓库，注意：是项目仓库名
-        TARGET_REPO: longweixia/vue-ad
+        TARGET_REPO: Janaeiw/vue-beautiful-chat
         # 构建结果存储的分支
-        TARGET_BRANCH: master
+        TARGET_BRANCH: main
         # 要使用的构建命令
         BUILD_SCRIPT: npm install && npm run build # 下载依赖 打包项目
         # 构建结果存储目录，dist里面会有index.html，如果没有这个文件，显示不了，可在本地构建后去校验
