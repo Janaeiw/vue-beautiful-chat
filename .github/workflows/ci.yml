@@ -1,0 +1,47 @@
+name: A TO A:GH_PAGES
+on: # 监听 master 分支上的 push 事件
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # 构建环境使用 ubuntu
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Build and Deploy
+      uses: jenkey2011/vuepress-deploy@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.VUEAD }} # VUEAD 是我的 secret 名称，需要替换成你的
+        # 你要操作的目标仓库，注意：是项目仓库名
+        TARGET_REPO: longweixia/vue-ad
+        # 构建结果存储的分支
+        TARGET_BRANCH: master
+        # 要使用的构建命令
+        BUILD_SCRIPT: npm install && npm run build # 下载依赖 打包项目
+        # 构建结果存储目录，dist里面会有index.html，如果没有这个文件，显示不了，可在本地构建后去校验
+        BUILD_DIR: dist
+  # sync: //gitee配置
+  #   needs: build-and-deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Sync to Gitee
+  #     uses: wearerequired/git-mirror-action@master
+  #     env:
+  #       SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
+  #     with:
+  #       # 来源仓库
+  #       source-repo: "git@github.com:linzowo/linzowo.github.io.git"
+  #       # 目标仓库
+  #       destination-repo: "git@gitee.com:linzowo/linzowo.git"
+  # reload-pages:
+  #   needs: sync
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: reload
+  #       uses: mizuka-wu/gitee-pages-action@v1.0.0
+  #       with:
+  #         repository: linzowo/linzowo
+  #         cookie: ${{ secrets.GITEE_COOKIE }}
+  #         branch: gh_pages
