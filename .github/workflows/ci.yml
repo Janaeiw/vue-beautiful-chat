@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: Janaeiw/vue-beautiful-chat
         with:
           persist-credentials: false
 
