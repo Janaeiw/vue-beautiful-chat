@@ -71,7 +71,7 @@ jobs:
           cp dist/index.html dist/404.html
 
       - name: Deploy 🚀
-        uses: Janaeiw/vue-beautiful-chat@releases/v3
+        uses: Janaeiw/vue-beautiful-chat
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages
